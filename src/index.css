@@ -1,0 +1,144 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.smallTextField {
+  height: 10px !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, sans-serif !important;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+}
+.nav-container {
+  width: 90%;
+  height: 86px;
+  align-items: center;
+  margin: auto;
+}
+
+.nav-container .logo {
+  color: #1dc801;
+  width: 18%;
+  font-size: 20px;
+  font-weight: 600;
+}
+.nav-container .search-box {
+  background: #ededed;
+  width: 268px;
+  height: 36px;
+  border: 1px solid rgb(0, 0, 0, 0.2);
+  width: 40%;
+  border-radius: 50px 50px 50px 50px;
+  justify-content: flex-end;
+}
+
+.search-box .form-control {
+  background: #ededed;
+  width: 80% !important;
+  border: none !important;
+  outline: none !important;
+  color: #a49e9e;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.search-box .form-control:focus {
+  background-color: #ededed;
+  box-shadow: none;
+}
+
+.search-icon {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: #1dc801;
+  width: 46px;
+  height: 35px;
+  top: 32px;
+  left: 449px;
+  gap: 0px;
+  opacity: 0px;
+  border-radius: 50px;
+}
+
+.search-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.search-input {
+  color: #a49e9e;
+  font-size: 0.5rem;
+}
+
+.nav-links-item {
+  color: black;
+  font-weight: 400;
+  font-size: "12px";
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(300px, 1fr)
+  ); /* Each column will be at least 300px wide, but can grow to fill available space */
+  gap: 20px; /* Adjust the gap between cards */
+}
+
+.side-bar {
+  cursor: pointer;
+}
+
+.scrollable {
+  font-weight: 500;
+  max-height: calc(100vh - 110px);
+  overflow-y: scroll;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For IE and Edge */
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar for WebKit browsers */
+}
+
+.scrollable-card-list{
+  max-height: calc(100vh - 110px);
+  overflow-y: scroll;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For IE and Edge */
+}
+
+
+.scrollable-card-list::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar for WebKit browsers */
+}
+
+
+
+.show-more {
+  /* height: ; */
+  overflow: hidden;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  background: red !important;
+}
+
+/* All the same stuff for Firefox */
+input[type="range"]::-moz-range-thumb {
+  background: red !important;
+}
+
+/* All the same stuff for IE */
+input[type="range"] {
+  background: red !important;
+}
