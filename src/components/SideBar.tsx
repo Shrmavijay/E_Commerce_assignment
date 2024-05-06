@@ -117,7 +117,8 @@ const SideBar: React.FC<SideBarProps> = ({ setFilteredProducts }) => {
           display: "flex",
           flexDirection: "column",
           gap: "10px",
-          marginLeft: "43px",
+          paddingLeft: "33px",
+          paddingTop: "20px"
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>

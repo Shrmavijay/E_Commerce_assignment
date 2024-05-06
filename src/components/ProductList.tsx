@@ -6,7 +6,7 @@ import { NavDropdown } from "react-bootstrap";
 interface ProductListProps {
   filteredProducts: any[];
 }
-const ProductList: React.FC<ProductListProps> = ({ filteredProducts }) => {
+const ProductList: React.FC<ProductListProps> = ({ filteredProducts , setFilteredProducts }) => {
   // const [products, setProducts] = useState([]);
   // const dispatch = useDispatch()
   const products = useAppSelector((state) => state.data.products);
@@ -31,22 +31,20 @@ const ProductList: React.FC<ProductListProps> = ({ filteredProducts }) => {
   // }, []);
   // console.log(products.thumbnail);
   const [sorttype, setSorttype] = useState<String>("");
+  
   const handleSort = (e: any) => {
-    const value = e.target.HTML;
+    const value = e;
     setSorttype(value);
-    if (filteredProducts.length > 0) {
-      if (value == "Price") {
-        filteredProducts.sort((a, b) => a.price - b.price);
+    let dataToSort = filteredProducts || JSON.parse(JSON.stringify([...products])) || []
+    debugger
+    if (dataToSort?.length > 0) {
+      if (value == "price") {
+        dataToSort.sort((a, b) => a.price - b.price);
       } else {
-        filteredProducts.sort((a, b) => a.rating - b.rating);
+        dataToSort.sort((a, b) => a.rating - b.rating);
       }
-    } else if (products.length > 0) {
-      if (value == "Price") {
-        filteredProducts.sort((a, b) => a.price - b.price);
-      } else {
-        filteredProducts.sort((a, b) => a.rating - b.rating);
-      }
-    }
+    } 
+    setFilteredProducts(dataToSort)
   };
 
   return (
@@ -67,27 +65,25 @@ const ProductList: React.FC<ProductListProps> = ({ filteredProducts }) => {
           </span>
           <div className="flex">
             <span>Sort By:</span>
-            <NavDropdown
+            {(filteredProducts?.length || products)  &&<NavDropdown
               title="Price"
               id="navbarScrollingDropdown"
               className="nav-links-item"
             >
-              <NavDropdown.Item href="#action3" onClick={handleSort}>
+              <NavDropdown.Item  onClick={()=>handleSort("price")}>
                 Price
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action4" onClick={handleSort}>
+              <NavDropdown.Item onClick={()=>handleSort("pop")}>
                 Popularity
               </NavDropdown.Item>
-              {/* <NavDropdown.Divider /> */}
-              {/* <NavDropdown.Item href="#action5">DU</NavDropdown.Item> */}
-            </NavDropdown>
+            </NavDropdown>}
           </div>
         </div>
         <div className="py-2">
           {/* <h2 className="font-manrope font-bold text-4xl text-black mb-8 max-lg:text-center">
           Product list
         </h2> */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8 scrollable-card-list">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 gap-8 scrollable-card-list">
             {filteredProducts && filteredProducts.length > 0
               ? filteredProducts.map((item, index) => (
                   <a

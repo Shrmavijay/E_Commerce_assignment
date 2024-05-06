@@ -37,10 +37,10 @@ const HomePage:React.FC<HomePageProps> = ({isLogin, setIsLogin}) => {
         </div>
       </Form> */}
       </div>
-      <div className="flex">
+      <div className="flex" style={{maxWidth:"98%"}}>
         <SideBar setFilteredProducts={setFilteredProducts}  />
         {/* <RegisterForm/> */}
-        <ProductList filteredProducts={filteredProducts}/>
+        <ProductList filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts}/>
       </div>
     </>
   );
