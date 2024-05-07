@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { GoSearch } from "react-icons/go";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useAppSelector } from "../hooks";
 import { useNavigate } from "react-router-dom";
 
@@ -53,12 +53,6 @@ const NavBar: React.FC<NavBarProps> = ({
     console.log(filtered, "filterd");
     setFilteredProducts(filtered);
   };
-
-  const fetchProducts = async ({ query }: any) => {  };
-  useEffect(() => {
-    fetchProducts(`/${query}`);
-  }, []);
-
   return (
     <>
       <Navbar expand="lg" className="nav-container">

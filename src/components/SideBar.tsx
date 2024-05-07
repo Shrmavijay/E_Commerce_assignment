@@ -99,7 +99,7 @@ const SideBar: React.FC<SideBarProps> = ({ setFilteredProducts }) => {
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <span style={{ fontSize: "0.9rem" }}>ALL PRODUCTS</span>
           {category
-            ?.filter((item, index) => showMore || index < 6)
+            ?.filter((_item, index) => showMore || index < 6)
             ?.map((productType, index) => {
               return (
                 <div key={index}>
@@ -128,14 +128,13 @@ const SideBar: React.FC<SideBarProps> = ({ setFilteredProducts }) => {
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <span style={{ fontSize: "0.9rem" }}>BRANDS</span>
           {brands
-            .filter((item, index) => showMore || index < 6)
+            .filter((_item, index) => showMore || index < 6)
             ?.map((brand, index) => {
               return (
                 <span
                   key={index}
                   className="side-bar"
                   style={
-                    // index === getActive
                     brand === getActive
                       ? { color: "#1DC801", fontSize: "0.8rem" }
                       : { color: "#B7B7B7", fontSize: "0.8rem" }
