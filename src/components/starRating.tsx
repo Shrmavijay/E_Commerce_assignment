@@ -7,26 +7,8 @@ const RatingReview: React.FC<RatingReviewProps> = ({ rating }) => {
     <>
       {[1, 2, 3, 4, 5].map((star,index) => {
         return (
-          // <span
-          //   className="start"
-          //   style={{
-          //     display: "inline-block",
-          //     //   cursor: "pointer",
-          //     color: rating >= star ? "gold" : "gray",
-          //     // fontSize: `0.9rem`,
-          //     height: '24px',
-          //     width: '29px'
-          //   }}
-          //   // onClick={() => {
-          //   //   setRating(star);
-          //   // }}
-          // >
-          //   {" "}
-          //   ★{" "}
-          // </span>
+
           <svg
-            // width="29"
-            // height="24"
             key={index}
             style={{height: '24px', width: '29px'}}
             viewBox="0 0 29 24"

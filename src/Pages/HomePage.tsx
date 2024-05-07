@@ -25,21 +25,10 @@ const HomePage:React.FC<HomePageProps> = ({isLogin, setIsLogin}) => {
         Free shipping for orders above $299
       </div>
       <div className="sm:block hidden">
-        {/* <Form className="my-3 d-flex justify-center search-box overflow-hidden">
-        <Form.Control
-          type="search"
-          placeholder="Search for different products and brands"
-          className="search-input"
-          aria-label="Search"
-        />
-        <div className="search-icon">
-          <GoSearch color="white" />
-        </div>
-      </Form> */}
+
       </div>
       <div className="flex" style={{maxWidth:"98%"}}>
         <SideBar setFilteredProducts={setFilteredProducts}  />
-        {/* <RegisterForm/> */}
         <ProductList filteredProducts={filteredProducts} setFilteredProducts={setFilteredProducts}/>
       </div>
     </>

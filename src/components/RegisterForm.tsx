@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { Formik } from "formik";
-// import MyfetchMiddleWare from "../utils/api";
 import "./registrationform.css";
 import { useState } from "react";
 import Loader from "../utils/LoginLoader";
@@ -21,25 +20,14 @@ export default function RegisterForm() {
   ) => {
     setIsLoading(true);
     if (values) {
-      // const userData = {
-      //   method: "POST",
-      //   endPoint: "api/users",
-      //   options: { data: { ...values } },
-      // };
       const user = await dispatch(userRegister(values));
       if(user.payload.id){
         actions.resetForm();
         navigate("/")
         setIsLoading(false)
       }
-      // const response = await MyfetchMiddleWare(userData);
-      // if (response.status == 201) {
-      //   navigate("/");
-      //   actions.resetForm();
-      //   setIsLoading(false);
-      // }
+
     } else {
-      // console.log(Error);
     }
   };
 
@@ -56,7 +44,6 @@ export default function RegisterForm() {
         onSubmit={handleRegister}
       >
         {({ errors, touched, handleSubmit, handleChange, handleBlur }) => {
-          // console.log("values: ", values, " Errors: ", errors);
           return (
             <>
               <div className="background">

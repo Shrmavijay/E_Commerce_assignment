@@ -91,8 +91,8 @@ body {
   grid-template-columns: repeat(
     auto-fill,
     minmax(300px, 1fr)
-  ); /* Each column will be at least 300px wide, but can grow to fill available space */
-  gap: 20px; /* Adjust the gap between cards */
+  ); 
+  gap: 20px; 
 }
 
 .side-bar {
@@ -103,30 +103,29 @@ body {
   font-weight: 500;
   max-height: calc(100vh - 110px);
   overflow-y: scroll;
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For IE and Edge */
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 
 .scrollable::-webkit-scrollbar {
-  display: none; /* Hide the scrollbar for WebKit browsers */
+  display: none; 
 }
 
 .scrollable-card-list{
   max-height: calc(100vh - 110px);
   overflow-y: scroll;
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For IE and Edge */
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 
 
 .scrollable-card-list::-webkit-scrollbar {
-  display: none; /* Hide the scrollbar for WebKit browsers */
+  display: none; 
 }
 
 
 
 .show-more {
-  /* height: ; */
   overflow: hidden;
 }
 
@@ -134,12 +133,38 @@ input[type="range"]::-webkit-slider-thumb {
   background: red !important;
 }
 
-/* All the same stuff for Firefox */
 input[type="range"]::-moz-range-thumb {
   background: red !important;
 }
 
-/* All the same stuff for IE */
 input[type="range"] {
   background: red !important;
 }
+
+
+
+
+
+
+
+
+.Cart-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.message-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

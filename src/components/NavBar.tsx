@@ -5,35 +5,40 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { GoSearch } from "react-icons/go";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../hooks";
 import { useNavigate } from "react-router-dom";
 
 interface NavBarProps {
   isLogin: boolean;
   setIsLogin: any;
-  setFilteredProducts: any
+  setFilteredProducts: any;
 }
-const NavBar: React.FC<NavBarProps> = ({ isLogin, setIsLogin, setFilteredProducts }) => {
+const NavBar: React.FC<NavBarProps> = ({
+  isLogin,
+  setIsLogin,
+  setFilteredProducts,
+}) => {
   const navigate = useNavigate();
   const products = useAppSelector((state) => state.data.products);
+  const cartproduts = useAppSelector((state) => state.data.cartproduts);
+
   const [searchQuery, setSearchQuery] = useState("");
-  const [Products,setProducts] = useState()
-  let query:string
+
+  let query: string;
+
   const handleSearchInputChange = (event: { target: { value: any } }) => {
-     query = event.target.value;
+    query = event.target.value;
     console.log(query, "Query parameter");
-    handleSetCategory(event)
+    handleSetCategory(event);
     setSearchQuery(query);
   };
-  // const [category, setCategory] = useState<String[]>([]);
-  
+
   const getCategories = () => {
-    const result = products.map((product) => {
+    const result = products?.map((product) => {
       return product.category;
     });
     const category = new Set(result);
-    // console.log("result: ", category);
     return Array.from(category);
   };
 
@@ -41,44 +46,26 @@ const NavBar: React.FC<NavBarProps> = ({ isLogin, setIsLogin, setFilteredProduct
 
   const handleSetCategory = (e: any) => {
     const value = e.target.innerHTML || e.target.value;
-    console.log("category: ", value)
+    console.log("category: ", value);
     const filtered = products.filter((product) => {
       return product.category.includes(value)
     });
-    console.log(filtered,"filterd")
+    console.log(filtered, "filterd");
     setFilteredProducts(filtered);
   };
 
-  const fetchProducts = async ({ query }: any) => {
-    // try {
-    //   let response;
-    //   if (query.length > 0) {
-    //     response = await fetch(
-    //       `https://dummyjson.com/products/category/${query}`
-    //     );
-    //   } else {
-    //     response = await fetch(`https://dummyjson.com/products`);
-    //   }
-    //   if (response.status === 200) {
-    //     const data = await response.json();
-    //     console.log("data : ", data.products);
-    //     setProducts(data.products);
-    //   } else {
-    //     console.error("Failed to fetch products:", response.statusText);
-    //   }
-    // } catch (error) {
-    //   console.error("Error fetching products:", error);
-    // }
-  };
+  const fetchProducts = async ({ query }: any) => {  };
   useEffect(() => {
     fetchProducts(`/${query}`);
   }, []);
-  console.log(Products,"Products");
+
   return (
     <>
       <Navbar expand="lg" className="nav-container">
         <Container fluid>
-          <Navbar.Brand className="logo">Grab a shoe</Navbar.Brand>
+          <Navbar.Brand className="logo" href="/" style={{ cursor: "pointer" }}>
+            Grab a shoe
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
 
           <Navbar.Collapse id="navbarScroll">
@@ -114,19 +101,22 @@ const NavBar: React.FC<NavBarProps> = ({ isLogin, setIsLogin, setFilteredProduct
                 {category?.map((category, index) => {
                   return (
                     <div key={index}>
-                      <NavDropdown.Item
-                        href="#action3"
-                        onClick={(e) => handleSetCategory(e)}
-                      >
+                      <NavDropdown.Item onClick={(e) => handleSetCategory(e)}>
                         {category}
                       </NavDropdown.Item>
                     </div>
                   );
                 })}
-                {/* <NavDropdown.Item href="#action4">women's </NavDropdown.Item> */}
               </NavDropdown>
-              <Nav.Link href="#action2" className="nav-links-item">
-                Cart
+              <Nav.Link className="nav-links-item">
+                {cartproduts.length > 0 ? (
+                  <span className="Cart-icon">
+                    <span className="message-count">{cartproduts.length}</span>
+                    Cart
+                  </span>
+                ) : (
+                  <span className="Cart-icon">Cart</span>
+                )}
               </Nav.Link>
 
               {!isLogin ? (

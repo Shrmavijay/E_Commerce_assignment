@@ -9,24 +9,36 @@ const baseURL = `${environment.products}`;
 interface InitialState{
   isLoading: boolean,
   products: any[],
+  cartproduts:any[],
   isError: any
 }
 
 const initialState: InitialState = {
   isLoading: false,
   products: [],
+  cartproduts: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart") || "") :[],
   isError: null,
 };
 
 export const getProducts = createAsyncThunk('getProducts', async()=>{
   try {
     const response = await axios.get(`${baseURL}`)
-    console.log(response)
     return response.data.products
   } catch (error:any) {
     throw error
   }
 })
+
+export const getSelectProducts = createAsyncThunk('getProductsone', async(id:number)=>{
+  try {
+    const response = await axios.get(`${baseURL}/${id}`)
+
+    return response.data
+  } catch (error:any) {
+    throw error
+  }
+})
+
 
 const products = createSlice({
   name: "products",
@@ -41,6 +53,17 @@ const products = createSlice({
     .addCase(getProducts.fulfilled,(state,{payload})=>{
       state.isLoading=false
       state.products= payload
+    })
+    .addCase(getSelectProducts.pending,(state)=>{
+      state.isLoading=true
+      return state
+    })
+    .addCase(getSelectProducts.fulfilled,(state,{payload})=>{
+      state.isLoading=false
+      state.cartproduts.push(payload)
+      const CartSring = JSON.stringify(state.cartproduts)
+      localStorage.setItem('cart',CartSring)
+      return state
     })
   },
 });

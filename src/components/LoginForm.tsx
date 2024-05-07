@@ -9,8 +9,7 @@ import "./loginform.css";
 import { useState } from "react";
 import Loader from "../utils/LoginLoader";
 import { loginValidationSchema } from "../utils/validationSchema";
-import axios from "axios";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch } from "../hooks";
 import { userLogin } from "../app/Slice/userSlice";
 
 interface LoginFormProps {
@@ -18,7 +17,7 @@ interface LoginFormProps {
 }
 const LoginForm: React.FC<LoginFormProps> = ({ checkLogin }) => {
   const [isLoading, setIsLoading] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [errorMessage, setErrorMessage] = useState("");
   const handleLogin = async (values: any, actions: any) => {
@@ -26,17 +25,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ checkLogin }) => {
     setIsLoading(true);
     try {
       if (values) {
-        // const userData = {
-        //   method: "POST",
-        //   endPoint: "api/users/login",
-        //   options: { data: { ...values } },
-        // };
+
         const user = await dispatch(userLogin(values));
-        // console.log(user)
         if (user.payload.id) {
           actions.resetForm();
           checkLogin();
           setIsLoading(false);
+          navigate('/')
         }
       } else {
         console.log(Error);
@@ -75,9 +70,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ checkLogin }) => {
                 style={{ visibility: "hidden" }}
               />
               <div className=" errors" style={{ visibility: "hidden" }}>
-                {/* {errors.name && touched.name ? (
-                <span className="text-red-500">{errors.name}</span>
-              ): null} */}
+      
                 {errorMessage}
               </div>
               <label htmlFor="email">Email Address</label>
